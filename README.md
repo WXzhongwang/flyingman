@@ -1,8 +1,8 @@
-# flyingman-pc-site
+# flyingman
 
 科技飞侠 PC 引流站 —— 纯展示性落地页，为微信小程序引流。
 
-- 托管：GitHub Pages（`https://wxzhongwang.github.io/flyingman-pc-site/`）
+- 托管：GitHub Pages（`https://wxzhongwang.github.io/flyingman/`）
 - 技术：单文件静态站（`index.html`，内联 CSS/JS），无构建步骤
 - 数据：页面加载后调用平台公开接口拉取全站热门资料
   `GET https://flyingman.mypetstore.cn/api/miniprogram/products/hot?limit=8`
