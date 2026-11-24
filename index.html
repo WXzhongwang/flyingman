@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ===== SEO ===== -->
+<title>科技飞侠 - 学习资料分享平台 | 微信小程序在线购买下载</title>
+<meta name="description" content="科技飞侠是学习资料分享平台：微信小程序内在线购买、下载复习资料、考研真题与专业课笔记；上传资料通过审核后上架，获得收益。无需下载 App，微信扫一扫即用。">
+<meta name="keywords" content="科技飞侠,学习资料,学习资料分享,考研资料,专业课笔记,真题下载,微信小程序,资料下载,在线购买资料">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#07c160">
+<!-- 生产部署时改为 PC 站正式域名 -->
+<link rel="canonical" href="https://wxzhongwang.github.io/flyingman-pc-site/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="科技飞侠">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="科技飞侠 - 学习资料分享平台">
+<meta property="og:description" content="微信小程序内在线购买、下载学习资料；上传资料通过审核后上架，获得收益。无需下载 App，微信扫一扫即用。">
+<meta property="og:url" content="https://wxzhongwang.github.io/flyingman-pc-site/">
+<meta property="og:image" content="https://wxzhongwang.github.io/flyingman-pc-site/gh_397ccaeab142_860.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="科技飞侠 - 学习资料分享平台">
+<meta name="twitter:description" content="微信小程序内在线购买、下载学习资料；上传资料通过审核后上架。无需下载 App，微信扫一扫即用。">
+<meta name="twitter:image" content="https://wxzhongwang.github.io/flyingman-pc-site/gh_397ccaeab142_860.jpg">
+
+<!-- 结构化数据：生产环境建议由服务端渲染注入，商品列表另加 ItemList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "科技飞侠",
+  "alternateName": "科技飞侠学习资料分享平台",
+  "url": "https://wxzhongwang.github.io/flyingman-pc-site/",
+  "inLanguage": "zh-CN",
+  "description": "学习资料分享平台：微信小程序内在线购买、下载复习资料与真题笔记；上传资料通过审核后上架，获得收益。"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "科技飞侠 - 学习资料分享平台",
+  "url": "https://wxzhongwang.github.io/flyingman-pc-site/",
+  "inLanguage": "zh-CN",
+  "about": {
+    "@type": "Thing",
+    "name": "学习资料分享平台",
+    "description": "考研、考证、专业课笔记与习题解析的在线购买与下载平台"
+  }
+}
+</script>
+
+<style>
+  /* ============ 设计令牌（与小程序浅色主题一致） ============ */
+  :root {
+    --brand: #07c160;
+    --brand-pressed: #06ad56;
+    --brand-tint-8: rgba(7, 193, 96, 0.08);
+    --brand-tint-12: rgba(7, 193, 96, 0.12);
+    --brand-on: #ffffff;
+    --bg-page: #f7f8fa;
+    --bg-surface: #ffffff;
+    --bg-subtle: #f2f3f5;
+    --bg-press: #eceef0;
+    --border: #e5e6eb;
+    --border-light: #f0f1f3;
+    --text-primary: #191919;
+    --text-secondary: #7f7f7f;
+    --text-tertiary: #b2b2b2;
+    --text-disabled: #c8c9cc;
+    --danger: #fa5151;
+    --radius-btn: 6px;
+    --radius-card: 8px;
+    --shadow-card: 0 1px 6px rgba(0, 0, 0, 0.04);
+    --shadow-float: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --font: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  body {
+    font-family: var(--font);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+
+  /* ============ 导航 ============ */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .nav .wrap {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .brand { display: flex; align-items: center; gap: 9px; font-size: 17px; font-weight: 600; }
+  .brand-mark {
+    width: 26px; height: 26px; border-radius: 7px;
+    background: var(--brand); color: #fff;
+    font-size: 15px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-links { display: flex; gap: 26px; font-size: 14px; color: var(--text-secondary); }
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-cta {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--brand);
+    color: var(--brand-on);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 9px 18px;
+    border-radius: var(--radius-btn);
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--brand-pressed); }
+  .nav-cta svg { width: 15px; height: 15px; }
+
+  /* ============ Hero ============ */
+  .hero { padding: 72px 0 64px; background: var(--bg-surface); overflow: hidden; }
+  .hero .wrap { display: flex; gap: 64px; align-items: center; }
+  .hero-copy { flex: 1; max-width: 560px; }
+  .hero h1 {
+    font-size: 44px;
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+  }
+  .hero .sub {
+    margin-top: 18px;
+    font-size: 17px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+  .hero-actions { margin-top: 32px; display: flex; gap: 14px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 26px;
+    border-radius: var(--radius-btn);
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font);
+  }
+  .btn svg { width: 17px; height: 17px; }
+  .btn-primary { background: var(--brand); color: var(--brand-on); }
+  .btn-primary:hover { background: var(--brand-pressed); }
+  .btn-outline { background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border); }
+  .btn-outline:hover { background: var(--bg-page); }
+  .hero-note { margin-top: 16px; font-size: 13px; color: var(--text-tertiary); }
+
+  /* Hero 手机 mock（与小程序浅色原型同款） */
+  .hero-phone {
+    width: 300px;
+    min-width: 300px;
+    height: 600px;
+    background: var(--bg-page);
+    border: 1px solid #d8dbe0;
+    border-radius: 32px;
+    box-shadow: var(--shadow-float);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .hp-status {
+    height: 38px; background: var(--bg-surface);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 18px; font-size: 13px; font-weight: 600; flex-shrink: 0;
+  }
+  .hp-batt { width: 20px; height: 10px; border: 1.5px solid var(--text-primary); border-radius: 3px; position: relative; }
+  .hp-batt::before { content: ""; position: absolute; inset: 1.5px; background: var(--text-primary); border-radius: 1px; }
+  .hp-nav {
+    height: 40px; background: var(--bg-surface);
+    display: flex; align-items: center; gap: 8px;
+    padding: 0 14px; font-size: 15px; font-weight: 600; flex-shrink: 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .hp-mark {
+    width: 20px; height: 20px; border-radius: 5px;
+    background: var(--brand); color: #fff; font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hp-body { flex: 1; padding: 10px; display: flex; flex-direction: column; gap: 9px; overflow: hidden; }
+  .hp-search {
+    background: var(--bg-subtle); border-radius: 6px; height: 30px;
+    display: flex; align-items: center; padding: 0 10px;
+    font-size: 12px; color: var(--text-tertiary);
+  }
+  .hp-hero {
+    background: var(--brand-tint-8); border: 1px solid rgba(7,193,96,.16);
+    border-radius: 8px; padding: 13px;
+  }
+  .hp-hero b { font-size: 14px; font-weight: 600; display: block; }
+  .hp-hero span { font-size: 11px; color: var(--text-secondary); display: block; margin: 4px 0 10px; }
+  .hp-hero i {
+    display: inline-block; background: var(--brand); color: #fff;
+    font-style: normal; font-size: 11px; font-weight: 500;
+    padding: 5px 12px; border-radius: 5px;
+  }
+  .hp-feats { display: flex; gap: 6px; }
+  .hp-feat {
+    flex: 1; background: var(--bg-surface); border: 1px solid var(--border);
+    border-radius: 7px; padding: 7px 4px; text-align: center;
+  }
+  .hp-feat b { display: block; font-size: 12px; font-weight: 600; }
+  .hp-feat span { font-size: 10px; color: var(--text-secondary); }
+  .hp-sec { font-size: 13px; font-weight: 600; padding: 2px; }
+  .hp-grid { display: flex; gap: 8px; }
+  .hp-card {
+    flex: 1; background: var(--bg-surface); border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden;
+  }
+  .hp-card .img {
+    height: 76px; background: var(--bg-subtle);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-disabled);
+  }
+  .hp-card .img svg { width: 26px; height: 26px; }
+  .hp-card .bd { padding: 6px 8px 8px; }
+  .hp-card .t { font-size: 11px; line-height: 1.4; height: 30px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .hp-card .p { font-size: 12px; font-weight: 600; color: var(--brand); margin-top: 4px; }
+  .hp-tabs {
+    height: 46px; background: var(--bg-surface); border-top: 1px solid var(--border-light);
+    display: flex; flex-shrink: 0;
+  }
+  .hp-tab {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2px; font-size: 9px; color: #8a8b8e;
+  }
+  .hp-tab.on { color: var(--brand); }
+  .hp-tab svg { width: 17px; height: 17px; }
+
+  /* ============ 功能带 ============ */
+  .features { border-top: 1px solid var(--border-light); padding: 56px 0; }
+  .feat-row { display: flex; }
+  .feat-item { flex: 1; padding: 0 28px; }
+  .feat-item:first-child { padding-left: 0; }
+  .feat-item:last-child { padding-right: 0; }
+  .feat-item + .feat-item { border-left: 1px solid var(--border); }
+  .feat-icon {
+    width: 38px; height: 38px; border-radius: 9px;
+    background: var(--brand-tint-12); color: var(--brand);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+  }
+  .feat-icon svg { width: 20px; height: 20px; }
+  .feat-item h3 { font-size: 16px; font-weight: 600; }
+  .feat-item p { margin-top: 6px; font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+  /* ============ 全站资料展示（接口实时数据） ============ */
+  .resources { background: var(--bg-page); padding: 64px 0; border-top: 1px solid var(--border-light); }
+  .res-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 28px; gap: 16px; }
+  .res-head h2 { font-size: 28px; font-weight: 600; letter-spacing: -0.3px; }
+  .res-head .live {
+    font-size: 13px; color: var(--text-secondary);
+    display: inline-flex; align-items: center; gap: 7px;
+  }
+  .res-head .live::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--brand);
+  }
+  .res-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .res-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .15s ease;
+  }
+  .res-card:hover { box-shadow: var(--shadow-card); }
+  .res-card .cover {
+    aspect-ratio: 4 / 3;
+    background: var(--bg-subtle);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-disabled);
+    overflow: hidden;
+  }
+  .res-card .cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .res-card .cover svg { width: 34px; height: 34px; }
+  .res-card .bd { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .res-card .name {
+    font-size: 14px; font-weight: 500; line-height: 1.5;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden; min-height: 42px;
+  }
+  .res-card .meta { font-size: 12px; color: var(--text-tertiary); }
+  .res-card .row { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
+  .res-card .price { font-size: 16px; font-weight: 600; color: var(--brand); font-variant-numeric: tabular-nums; }
+  .res-card .sales { font-size: 12px; color: var(--text-tertiary); }
+  .res-empty {
+    grid-column: 1 / -1;
+    text-align: center; padding: 40px 0;
+    color: var(--text-tertiary); font-size: 14px;
+  }
+
+  /* ============ 三步流程 ============ */
+  .steps { padding: 64px 0; }
+  .sec-head { text-align: center; margin-bottom: 40px; }
+  .sec-head h2 { font-size: 28px; font-weight: 600; letter-spacing: -0.3px; }
+  .sec-head p { margin-top: 8px; font-size: 15px; color: var(--text-secondary); }
+  .step-row { display: flex; gap: 24px; }
+  .step {
+    flex: 1;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 28px 26px;
+    box-shadow: var(--shadow-card);
+  }
+  .step .num {
+    font-size: 13px; font-weight: 600; color: var(--brand);
+    font-variant-numeric: tabular-nums;
+  }
+  .step h3 { margin-top: 10px; font-size: 17px; font-weight: 600; }
+  .step p { margin-top: 8px; font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+  /* ============ 贡献者横幅 ============ */
+  .contrib { padding: 8px 0 64px; }
+  .contrib-band {
+    background: var(--brand-tint-8);
+    border: 1px solid rgba(7, 193, 96, 0.16);
+    border-radius: 16px;
+    padding: 48px 56px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+  .contrib-copy { flex: 1; }
+  .contrib-copy h2 { font-size: 26px; font-weight: 600; letter-spacing: -0.3px; }
+  .contrib-copy p { margin-top: 12px; font-size: 15px; color: var(--text-secondary); line-height: 1.8; max-width: 560px; }
+  .contrib-points { margin-top: 18px; display: flex; gap: 24px; font-size: 14px; color: var(--text-primary); }
+  .contrib-points span { display: inline-flex; align-items: center; gap: 7px; }
+  .contrib-points svg { width: 15px; height: 15px; color: var(--brand); }
+  .contrib-side { display: flex; flex-direction: column; gap: 10px; min-width: 220px; }
+  .contrib-side .btn { width: 100%; }
+  .contrib-side .hint { font-size: 12px; color: var(--text-tertiary); text-align: center; }
+
+  /* ============ FAQ ============ */
+  .faq { background: var(--bg-page); padding: 64px 0; border-top: 1px solid var(--border-light); }
+  .faq-list { max-width: 760px; margin: 0 auto; }
+  details {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 0 22px;
+  }
+  details + details { margin-top: 12px; }
+  summary {
+    list-style: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 17px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+";
+    font-size: 18px;
+    color: var(--text-tertiary);
+    font-weight: 400;
+    flex-shrink: 0;
+  }
+  details[open] summary::after { content: "−"; }
+  details .answer {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    padding: 0 0 18px;
+    border-top: 1px solid var(--border-light);
+    padding-top: 14px;
+  }
+
+  /* ============ 扫码 CTA ============ */
+  .qr-cta { padding: 72px 0; }
+  .qr-cta .wrap {
+    display: flex;
+    align-items: center;
+    gap: 56px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 52px 64px;
+    box-shadow: var(--shadow-card);
+  }
+  .qr-copy { flex: 1; }
+  .qr-copy h2 { font-size: 28px; font-weight: 600; letter-spacing: -0.3px; }
+  .qr-copy p { margin-top: 12px; font-size: 15px; color: var(--text-secondary); line-height: 1.8; max-width: 480px; }
+  .qr-badges { margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .qr-badge {
+    font-size: 13px; color: var(--text-secondary);
+    background: var(--bg-subtle);
+    border-radius: 999px;
+    padding: 6px 14px;
+  }
+  .qr-box { text-align: center; flex-shrink: 0; }
+  .qr-frame {
+    width: 188px; height: 188px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    background: #fff;
+  }
+  .qr-frame img { width: 164px; height: 164px; display: block; border-radius: 6px; }
+  .qr-box .cap { margin-top: 12px; font-size: 14px; font-weight: 500; }
+  .qr-box .cap-sub { font-size: 12px; color: var(--text-tertiary); margin-top: 3px; }
+
+  /* ============ 页脚 ============ */
+  footer { border-top: 1px solid var(--border-light); padding: 32px 0; }
+  footer .wrap { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  footer .f-brand { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; }
+  footer .f-links { display: flex; gap: 20px; font-size: 13px; color: var(--text-secondary); }
+  footer .f-links a:hover { color: var(--text-primary); }
+  footer .f-copy { margin-left: auto; font-size: 13px; color: var(--text-tertiary); }
+
+  /* ============ 响应式 ============ */
+  @media (max-width: 1080px) {
+    .res-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 960px) {
+    .hero .wrap { flex-direction: column; gap: 40px; }
+    .hero-copy { max-width: none; text-align: center; }
+    .hero h1 { font-size: 34px; }
+    .hero-actions { justify-content: center; }
+    .nav-links { display: none; }
+    .feat-row, .step-row { flex-direction: column; }
+    .feat-item { padding: 18px 0; }
+    .feat-item + .feat-item { border-left: none; border-top: 1px solid var(--border); }
+    .res-grid { grid-template-columns: repeat(2, 1fr); }
+    .contrib-band, .qr-cta .wrap { flex-direction: column; text-align: center; padding: 36px 28px; }
+    .contrib-copy p { margin-left: auto; margin-right: auto; }
+    .contrib-points { justify-content: center; flex-wrap: wrap; }
+    footer .f-copy { margin-left: 0; }
+  }
+  @media (max-width: 560px) {
+    .res-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 图标 sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ic-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/>
+    <rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2.5v2.5H14zM18.5 14H20v2.5h-1.5zM14 18.5h2.5V20H14zM18.5 18.5H20V20h-1.5z"/>
+  </symbol>
+  <symbol id="ic-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/>
+  </symbol>
+  <symbol id="ic-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 4v10"/><path d="m7.5 10.5 4.5 4 4.5-4.5"/><path d="M5 19h14"/>
+  </symbol>
+  <symbol id="ic-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="6" width="17" height="13" rx="2"/><path d="M3.5 10h17"/><circle cx="16.5" cy="14.5" r="1.2" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="ic-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 16V6"/><path d="m7.5 10.5 4.5-4.5 4.5 4.5"/><path d="M5 19h14"/>
+  </symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m5 12.5 4.5 4.5L19 7.5"/>
+  </symbol>
+  <symbol id="ic-wechat" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M9.2 4C5.2 4 2 6.7 2 10c0 1.9 1.1 3.5 2.8 4.6l-.7 2.2 2.5-1.3c.8.2 1.6.3 2.4.3h.5a5.4 5.4 0 0 1-.1-1c0-3.1 3-5.6 6.8-5.6h.6C16.1 6.3 13 4 9.2 4zm-2.5 3a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8zm5 0a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8z"/>
+    <path d="M22 13.6c0-2.7-2.7-4.9-6-4.9s-6 2.2-6 4.9 2.7 4.9 6 4.9c.7 0 1.4-.1 2.1-.3l2 1.1-.6-1.8c1.5-.9 2.5-2.3 2.5-3.9zm-8-1.6a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm4 0a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z"/>
+  </symbol>
+  <symbol id="ic-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/>
+  </symbol>
+  <symbol id="ic-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/>
+    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/>
+  </symbol>
+  <symbol id="ic-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <circle cx="12" cy="8" r="4"/><path d="M4.5 20c1.5-3.5 4.2-5 7.5-5s6 1.5 7.5 5"/>
+  </symbol>
+</svg>
+
+<!-- ============ 导航 ============ -->
+<nav class="nav" aria-label="主导航">
+  <div class="wrap">
+    <a class="brand" href="#"><span class="brand-mark" aria-hidden="true">科</span>科技飞侠</a>
+    <div class="nav-links">
+      <a href="#features">平台特色</a>
+      <a href="#resources">资料展示</a>
+      <a href="#steps">如何使用</a>
+      <a href="#contrib">成为贡献者</a>
+      <a href="#faq">常见问题</a>
+    </div>
+    <a class="nav-cta" href="#qr"><svg aria-hidden="true"><use href="#ic-qr"/></svg>扫码进入小程序</a>
+  </div>
+</nav>
+
+<!-- ============ Hero ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1>你需要的学习资料，<br>在微信里即买即下</h1>
+      <p class="sub">高等数学、考研真题、专业课笔记……在小程序里浏览、购买、下载，订单与已购资料随时可查。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#qr"><svg aria-hidden="true"><use href="#ic-wechat"/></svg>扫码进入小程序</a>
+        <a class="btn btn-outline" href="#contrib">成为资料贡献者</a>
+      </div>
+      <div class="hero-note">无需下载 App，微信扫一扫即可使用</div>
+    </div>
+
+    <!-- 小程序首页 mock（与小程序浅色原型一致） -->
+    <div class="hero-phone" aria-hidden="true">
+      <div class="hp-status"><span>9:41</span><span class="hp-batt"></span></div>
+      <div class="hp-nav"><span class="hp-mark">科</span>科技飞侠</div>
+      <div class="hp-body">
+        <div class="hp-search">搜索学习资料</div>
+        <div class="hp-hero">
+          <b>上传学习资料</b>
+          <span>审核通过后即可上架，赚取收益</span>
+          <i>申请成为贡献者</i>
+        </div>
+        <div class="hp-feats">
+          <div class="hp-feat"><b>免费</b><span>申请入驻</span></div>
+          <div class="hp-feat"><b>随时</b><span>申请提现</span></div>
+          <div class="hp-feat"><b>在线</b><span>购买下载</span></div>
+        </div>
+        <div class="hp-sec">热门推荐</div>
+        <div class="hp-grid">
+          <div class="hp-card">
+            <div class="img"><svg><use href="#ic-doc"/></svg></div>
+            <div class="bd"><div class="t">高等数学第七版上册 习题全解指南</div><div class="p">¥12.90</div></div>
+          </div>
+          <div class="hp-card">
+            <div class="img"><svg><use href="#ic-doc"/></svg></div>
+            <div class="bd"><div class="t">考研英语真题详解 2010-2024</div><div class="p">¥25.00</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="hp-tabs">
+        <div class="hp-tab on"><svg><use href="#ic-home"/></svg>首页</div>
+        <div class="hp-tab"><svg><use href="#ic-grid"/></svg>分类</div>
+        <div class="hp-tab"><svg><use href="#ic-doc"/></svg>订单</div>
+        <div class="hp-tab"><svg><use href="#ic-user"/></svg>我的</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 功能带 ============ -->
+<section class="features" id="features" aria-label="平台特色">
+  <div class="wrap">
+    <div class="feat-row">
+      <div class="feat-item">
+        <div class="feat-icon"><svg aria-hidden="true"><use href="#ic-doc"/></svg></div>
+        <h3>资料齐全</h3>
+        <p>考研、考证、专业课笔记与习题解析，按分类快速定位。</p>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon"><svg aria-hidden="true"><use href="#ic-download"/></svg></div>
+        <h3>即买即下</h3>
+        <p>支付完成后随时在「已购资料」重复下载，不用再找链接。</p>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon"><svg aria-hidden="true"><use href="#ic-upload"/></svg></div>
+        <h3>上传上架</h3>
+        <p>成为贡献者上传资料，通过审核后即可上架获得收益。</p>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon"><svg aria-hidden="true"><use href="#ic-wallet"/></svg></div>
+        <h3>提现便捷</h3>
+        <p>收益明细清楚可查，绑定银行卡后随时申请提现。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 全站资料展示 ============ -->
+<!-- SEO：静态兜底内容已写在 HTML 里，爬虫无 JS 也能读到；生产环境建议服务端渲染接口数据 -->
+<section class="resources" id="resources" aria-label="全站资料展示">
+  <div class="wrap">
+    <div class="res-head">
+      <h2>全站热门资料</h2>
+      <span class="live" id="res-live">数据来自平台接口，实时更新</span>
+    </div>
+    <div class="res-grid" id="res-grid">
+      <!-- 静态兜底：接口不可用时保留（同时也是 SEO 可抓取内容） -->
+      <article class="res-card">
+        <div class="cover"><svg aria-hidden="true"><use href="#ic-doc"/></svg></div>
+        <div class="bd">
+          <div class="name">高等数学第七版上册 习题全解指南</div>
+          <div class="meta">高等数学 · 教辅习题</div>
+          <div class="row"><span class="price">¥12.90</span><span class="sales">已售 326</span></div>
+        </div>
+      </article>
+      <article class="res-card">
+        <div class="cover"><svg aria-hidden="true"><use href="#ic-doc"/></svg></div>
+        <div class="bd">
+          <div class="name">考研英语真题详解 2010-2024</div>
+          <div class="meta">考研英语 · 历年真题</div>
+          <div class="row"><span class="price">¥25.00</span><span class="sales">已售 512</span></div>
+        </div>
+      </article>
+      <article class="res-card">
+        <div class="cover"><svg aria-hidden="true"><use href="#ic-doc"/></svg></div>
+        <div class="bd">
+          <div class="name">线性代数知识点总结与典型例题</div>
+          <div class="meta">线性代数 · 复习笔记</div>
+          <div class="row"><span class="price">¥9.90</span><span class="sales">已售 198</span></div>
+        </div>
+      </article>
+      <article class="res-card">
+        <div class="cover"><svg aria-hidden="true"><use href="#ic-doc"/></svg></div>
+        <div class="bd">
+          <div class="name">计算机四级网络技术备考资料包</div>
+          <div class="meta">计算机等级考试 · 备考资料</div>
+          <div class="row"><span class="price">¥15.00</span><span class="sales">已售 143</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 三步流程 ============ -->
+<section class="steps" id="steps" aria-label="如何使用">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>三步开始使用</h2>
+      <p>全程在微信内完成，不用下载安装</p>
+    </div>
+    <div class="step-row">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>扫码进入</h3>
+        <p>微信扫一扫下方小程序码，或在微信搜索「科技飞侠」。</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>选购资料</h3>
+        <p>浏览分类或搜索关键词，看中后微信支付完成购买。</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>下载学习</h3>
+        <p>在「我的 - 已购资料」中随时下载，订单状态一目了然。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 贡献者横幅 ============ -->
+<section class="contrib" id="contrib" aria-label="成为贡献者">
+  <div class="wrap">
+    <div class="contrib-band">
+      <div class="contrib-copy">
+        <h2>把你的笔记，变成可持续的收益</h2>
+        <p>整理好的复习笔记、习题解析、真题资料，上传后由平台审核，通过即可上架展示。每一次售出都会计入收益明细，随时申请提现到银行卡。</p>
+        <div class="contrib-points">
+          <span><svg aria-hidden="true"><use href="#ic-check"/></svg>审核通过后上架</span>
+          <span><svg aria-hidden="true"><use href="#ic-check"/></svg>收益明细可查</span>
+          <span><svg aria-hidden="true"><use href="#ic-check"/></svg>随时申请提现</span>
+        </div>
+      </div>
+      <div class="contrib-side">
+        <a class="btn btn-primary" href="#qr">扫码申请成为贡献者</a>
+        <div class="hint">入驻申请在小程序内完成</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq" aria-label="常见问题">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>常见问题</h2>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>需要下载 App 吗？</summary>
+        <div class="answer">不需要。科技飞侠是微信小程序，扫码或搜索即可使用，购买、下载、提现都在微信内完成。</div>
+      </details>
+      <details>
+        <summary>购买后如何下载资料？</summary>
+        <div class="answer">支付成功后，进入「我的 - 已购资料」即可下载，支持重复下载；订单详情页也能直接查看已购内容。</div>
+      </details>
+      <details>
+        <summary>如何成为资料贡献者？</summary>
+        <div class="answer">在小程序「我的」中进入入驻申请，填写基本信息并提交。审核通过后即可上传资料，上架后获得相应收益。</div>
+      </details>
+      <details>
+        <summary>收益如何提现？</summary>
+        <div class="answer">在「收益中心」查看明细，绑定银行卡后即可提交提现申请，到账时间以银行处理为准。</div>
+      </details>
+      <details>
+        <summary>资料可以退款吗？</summary>
+        <div class="answer">虚拟商品一经下载不支持退款；如遇资料缺失或与描述不符，可在「意见反馈」提交问题，我们会尽快处理。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 扫码 CTA ============ -->
+<section class="qr-cta" id="qr" aria-label="扫码进入小程序">
+  <div class="wrap">
+    <div class="qr-copy">
+      <h2>微信扫一扫，立即使用</h2>
+      <p>或在微信中搜索小程序名称「科技飞侠」。PC 端仅作展示，购买与下载均在小程序内完成。</p>
+      <div class="qr-badges">
+        <span class="qr-badge">微信小程序</span>
+        <span class="qr-badge">无需下载 App</span>
+        <span class="qr-badge">在线购买 · 随时下载</span>
+      </div>
+    </div>
+    <div class="qr-box">
+      <div class="qr-frame">
+        <img src="gh_397ccaeab142_430.jpg"
+             srcset="gh_397ccaeab142_258.jpg 258w, gh_397ccaeab142_430.jpg 430w, gh_397ccaeab142_860.jpg 860w"
+             sizes="164px"
+             width="164" height="164"
+             alt="科技飞侠微信小程序码，微信扫一扫进入小程序">
+      </div>
+      <div class="cap">扫码进入小程序</div>
+      <div class="cap-sub">科技飞侠 · 微信小程序</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 页脚 ============ -->
+<footer>
+  <div class="wrap">
+    <div class="f-brand"><span class="brand-mark" aria-hidden="true">科</span>科技飞侠</div>
+    <nav class="f-links" aria-label="页脚导航">
+      <a href="#">用户协议</a>
+      <a href="#">隐私政策</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <div class="f-copy">© 2026 科技飞侠</div>
+  </div>
+</footer>
+
+<script>
+/**
+ * 全站资料展示：调用平台公开接口（免登录、CORS 已放行）
+ *   GET /api/miniprogram/products/hot?limit=8   热门
+ *   GET /api/miniprogram/products/new?limit=8   兜底：热门为空时取最新
+ * 接口不可用（离线/本地打开）时保留 HTML 内的静态兜底内容。
+ * 生产部署在同域时可把 API_BASE 置空走相对路径；也可用 window.FM_API_BASE 覆盖。
+ */
+(function () {
+  var API_BASE = window.FM_API_BASE || 'https://flyingman.mypetstore.cn';
+  var grid = document.getElementById('res-grid');
+  if (!grid) return;
+
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function fmtPrice(p) {
+    var n = Number(p);
+    if (!isFinite(n)) return '';
+    return n > 0 ? '¥' + n.toFixed(2) : '免费';
+  }
+
+  function cardHTML(p) {
+    var cover = p.coverImage
+      ? '<img src="' + esc(p.coverImage) + '" alt="' + esc(p.name) + '" loading="lazy" width="240" height="180">'
+      : '<svg aria-hidden="true"><use href="#ic-doc"/></svg>';
+    var meta = [p.categoryName, p.commitorName].filter(Boolean).map(esc).join(' · ');
+    var sales = (p.sales != null && Number(p.sales) > 0) ? '<span class="sales">已售 ' + Number(p.sales) + '</span>' : '';
+    return '<article class="res-card">' +
+      '<div class="cover">' + cover + '</div>' +
+      '<div class="bd">' +
+        '<div class="name">' + esc(p.name) + '</div>' +
+        (meta ? '<div class="meta">' + meta + '</div>' : '') +
+        '<div class="row"><span class="price">' + fmtPrice(p.price) + '</span>' + sales + '</div>' +
+      '</div>' +
+    '</article>';
+  }
+
+  function render(list) {
+    if (!list || !list.length) return;
+    grid.innerHTML = list.map(cardHTML).join('');
+  }
+
+  function fetchJSON(url) {
+    return fetch(url, { headers: { 'Accept': 'application/json' } })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (res) {
+        // 统一响应 R{code,msg,data}：200 成功
+        if (res && res.code === 200 && res.data) return res.data;
+        throw new Error((res && res.msg) || '接口返回异常');
+      });
+  }
+
+  function load() {
+    fetchJSON(API_BASE + '/api/miniprogram/products/hot?limit=8')
+      .then(function (data) {
+        var list = Array.isArray(data) ? data : (data && data.records) || [];
+        if (list.length) { render(list); return; }
+        return fetchJSON(API_BASE + '/api/miniprogram/products/new?limit=8').then(function (d2) {
+          render(Array.isArray(d2) ? d2 : (d2 && d2.records) || []);
+        });
+      })
+      .catch(function (err) {
+        // 静默降级：保留静态兜底卡片
+        if (window.console) console.info('资料接口不可用，使用静态兜底：', err && err.message);
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', load);
+  } else {
+    load();
+  }
+})();
+</script>
+
+</body>
+</html>
